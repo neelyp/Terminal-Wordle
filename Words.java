@@ -6,32 +6,34 @@ import java.util.Random;
 import java.util.Scanner; // Import the Scanner class
 
 public class Words {
-		public String randomWord() {
-				String fileName = "answers.txt";
+	public String randomWord() {
+		String fileName = "answers.txt";
+		Random random = new Random();
+		String randomWord;
+		int randomIndex;
+		String line;
 
-				try {
-						BufferedReader reader = new BufferedReader(new FileReader(fileName));
-						ArrayList<String> words = new ArrayList<>();
-						String line;
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(fileName));
+			ArrayList<String> words = new ArrayList<>();
 
-						while ((line = reader.readLine()) != null) {
-								words.add(line);
-						}
+			while ((line = reader.readLine()) != null) {
+					words.add(line);
+			}
 
-						reader.close(); // Close the file reader when you're done reading
+			reader.close(); // Close the file reader when you're done reading
 
-						if (!words.isEmpty()) {
-								Random random = new Random();
-								int randomIndex = random.nextInt(words.size());
-								String randomWord = words.get(randomIndex);
-								return randomWord;
-						} else {
-								return "The file is empty.";
-						}
-				} catch (IOException e) {
-						return "An error occurred: " + e.getMessage();
-				}
+			if (!words.isEmpty()) {
+				randomIndex = random.nextInt(words.size());
+				randomWord = words.get(randomIndex);
+				return randomWord;
+			} else {
+				return "The file is empty.";
+			}
+		} catch (IOException e) {
+			return "An error occurred: " + e.getMessage();
 		}
+	}
 
 		public boolean isInList(String wrd) {
 				String fileName = "guesses.txt"; // Replace with the path to your text file
